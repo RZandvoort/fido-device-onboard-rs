@@ -818,12 +818,24 @@ impl<'a> TestServerConfigurator<'a> {
                     cfg.insert("sshkey1", "ssh-ed25519 sshkey_default user@example.com");
                     cfg.insert("sshkey2", "ssh-ed25519 sshkey_default user@example2.com");
                     cfg.insert("password", "testpassword");
+                    cfg.insert("path1", "/etc/hosts");
+                    cfg.insert("permissions1", "644");
+                    cfg.insert("source_path_1", "/etc/hosts");
+                    cfg.insert("path2", "/etc/resolv.conf");
+                    cfg.insert("permissions2", "444");
+                    cfg.insert("source_path_2", "/etc/resolv.conf");
                 } else {
                     L.l("per_device_serviceinfo is set, using device specific values");
                     cfg.insert("user", &cur_user);
                     cfg.insert("sshkey1", "ssh-ed25519 sshkey_per_device user@example.com");
                     cfg.insert("sshkey2", "ssh-ed25519 sshkey_per_device user@example2.com");
                     cfg.insert("password", "testpassword");
+                    cfg.insert("path1", "/etc/hosts");
+                    cfg.insert("permissions1", "644");
+                    cfg.insert("source_path_1", "/etc/hosts");
+                    cfg.insert("path2", "/etc/per-device-resolv.conf");
+                    cfg.insert("permissions2", "444");
+                    cfg.insert("source_path_2", "/etc/per-device-resolv.conf");
                 }
 
                 // TODO: Insert more defaults

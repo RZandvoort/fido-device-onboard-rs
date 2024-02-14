@@ -13,11 +13,12 @@ service_info:
     - {{ sshkey1 }}
     - {{ sshkey2 }}
   files:
-  - path: /etc/hosts
-    permissions: 644
-    source_path: /etc/hosts
-  - path: /etc/resolv.conf
-    source_path: /etc/resolv.conf
+  - path: {{ path1 }}
+    permissions: {{ permissions1 }}
+    source_path: {{ source_path_1 }}
+  - path: {{ path2 }}
+    permissions: {{ permissions2 }}
+    source_path: {{ source_path_2 }}
   commands:
   - command: ls
     args:

@@ -660,6 +660,7 @@ ssh-ed25519 sshkey_per_device user@example2.com
 # End of FIDO Device Onboarding keys
 "
     );
+    // TODO: Add per-device binaryfile assertion here 
 
     env::set_var("PER_DEVICE_SERVICEINFO", "false");
     Ok(())
