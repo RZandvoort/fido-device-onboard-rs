@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: continuous_delivery
     env:
-      quay_org: fido-fdo
+      quay_org: kpwrwyfmyzpxupsign
 
     steps:
     - uses: actions/checkout@v3
