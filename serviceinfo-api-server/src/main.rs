@@ -263,7 +263,7 @@ async fn serviceinfo_handler(
         if let Some(files) = &user_data.service_info_configuration.settings.files {
             add_binary_files_to_reply(files, &mut reply);
             
-            log::debug!("Added base file configuration binary files");
+            log::debug!("Added base configuration binary files");
         }
 
         // precedence is given to 'per_device' settings over base serviceinfo_api_server.yml config
@@ -275,7 +275,7 @@ async fn serviceinfo_handler(
                         if let Some(files) = &per_device_service_info_configuration.settings.files {
                             add_binary_files_to_reply(files, &mut reply);
 
-                            log::debug!("Added per-device file configuration binary files");
+                            log::debug!("Added per-device configuration binary files");
                         }
                     }
                     Err(e) => {
@@ -284,7 +284,7 @@ async fn serviceinfo_handler(
                 };
             }
             Err(_) => {
-                log::info!("No per-device settings file configuration found");
+                log::info!("No per-device configuration file found");
             }
         };
     }
@@ -293,11 +293,11 @@ async fn serviceinfo_handler(
         .modules
         .contains(&FedoraIotServiceInfoModule::Command.into())
     {
-        // Add base file commands to reply
+        // Add base configuration commands 
         if let Some(commands) = &user_data.service_info_configuration.settings.commands {
-            add_binary_files_to_reply(files, &mut reply);
+            add_commands_to_reply(commands, &mut reply);
 
-            log::debug!("Added base file configuration commands");
+            log::debug!("Added base configuration commands");
         }
 
         // Add device specific commands to reply
@@ -306,10 +306,10 @@ async fn serviceinfo_handler(
                 let per_device_settings = config;
                 match ServiceInfoConfiguration::from_settings(per_device_settings){
                     Ok(per_device_service_info_configuration) => {
-                        if let Some(files) = &per_device_service_info_configuration.settings.files {
-                            add_binary_files_to_reply(files, &mut reply);
+                        if let Some(commands) = &per_device_service_info_configuration.settings.commands {
+                            add_commands_to_reply(commands, &mut reply);
 
-                            log::debug!("Added per-device file configuration commands");
+                            log::debug!("Added per-device configuration commands");
                         }
                     }
                     Err(e) => {
@@ -318,7 +318,7 @@ async fn serviceinfo_handler(
                 };
             }
             Err(_) => {
-                log::info!("No per-device settings file configuration found");
+                log::info!("No per-device configuration file found");
             }
         };
     }
