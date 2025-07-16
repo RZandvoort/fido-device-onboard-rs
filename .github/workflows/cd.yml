@@ -1,4 +1,7 @@
 on:
+  push:
+  workflow_dispatch:
+
 name: Continuous Delivery
 
 jobs:
