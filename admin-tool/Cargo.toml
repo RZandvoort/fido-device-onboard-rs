@@ -1,6 +1,6 @@
 [package]
 name = "fdo-admin-tool"
-version = "0.5.0"
+version = "0.5.5"
 authors = ["Antonio Murdaca <runcom@linux.com>"]
 edition = "2018"
 
@@ -9,22 +9,22 @@ edition = "2018"
 [dependencies]
 anyhow = "1"
 config = "0.13.4"
-openssl = "0.10.66"
+openssl = "0.10.72"
 log = "0.4"
 time = "0.3"
 clap = { version = "4.4", features = ["derive"] }
 futures = "0.3"
-reqwest = "0.11"
+reqwest = "0.12"
 serde = "1"
 serde_yaml = "0.9"
 pretty_env_logger = "0.5"
 nix = "0.26"
 tokio = { version = "1", features = ["full"] }
 
-fdo-data-formats = { path = "../data-formats", version = "0.5.0" }
-fdo-http-wrapper = { path = "../http-wrapper", version = "0.5.0", features = ["server", "client"] }
-fdo-store = { path = "../store", version = "0.5.0", features = ["directory"] }
-fdo-util = { path = "../util", version = "0.5.0" }
+fdo-data-formats = { path = "../data-formats", version = "0.5.5" }
+fdo-http-wrapper = { path = "../http-wrapper", version = "0.5.5", features = ["server", "client"] }
+fdo-store = { path = "../store", version = "0.5.5", features = ["directory"] }
+fdo-util = { path = "../util", version = "0.5.5" }
 clap_builder = "4.4"
 
 [dev-dependencies]

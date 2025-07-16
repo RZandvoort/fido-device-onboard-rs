@@ -50,7 +50,7 @@ sudo rm -rf aio
 
 # Set servers store driver to postgres
 greenprint "🔧 Set servers store driver to postgres"
-sudo pip3 install yq
+sudo pipx install yq
 # Configure manufacturing server db
 yq -yi 'del(.ownership_voucher_store_driver.Directory)' test/fdo/manufacturing-server.yml
 yq -yi ".ownership_voucher_store_driver += {Postgres: {server: \"Manufacturer\", url: \"${DB_URL}\"}}" test/fdo/manufacturing-server.yml
@@ -160,7 +160,9 @@ sudo podman run \
     --privileged \
     -v "$PWD"/export-ov:/export-ov:z \
     localhost/clients \
-    fdo-owner-tool export-manufacturer-vouchers postgres "postgresql://${POSTGRES_USERNAME}:${POSTGRES_PASSWORD}@${POSTGRES_IP}/${POSTGRES_DB}" /export-ov/ | grep "exported"
+    fdo-owner-tool export-manufacturer-vouchers "http://${FDO_MANUFACTURING_ADDRESS}:8080" --path /export-ov | grep "exported"
+sudo tar xvf "$PWD"/export-ov/export.tar -C "$PWD"/export-ov
+sudo rm -rf "$PWD"/export-ov/export.tar
 EXPORTED_FILE=$(ls -1 export-ov)
 greenprint "🔧 Import OV into owner db"
 sudo podman run \
@@ -194,5 +196,5 @@ sudo podman ps -a
 greenprint "🔧 Collecting container logs"
 sudo podman logs rendezvous-server
 
-rm -rf initdb export-ov
+sudo rm -rf initdb export-ov
 exit 0
